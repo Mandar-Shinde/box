@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context=".ShareFragment">
+
+
+    <com.google.android.gms.plus.PlusOneButton
+        xmlns:plus="http://schemas.android.com/apk/lib/com.google.android.gms.plus"
+        android:id="@+id/plus_one_button" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" plus:size="standard" plus:annotation="inline" android:layout_gravity="bottom"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="158dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Potfix is a medley burrito of the greatest, geekiest products for entrepreneurs. We work tirelessly to find the most innovative, creative, and practical stuff out there and aim to bring them to you, directly and affordably. We measure our success based on yours and try our best to increase your value of life considerably. In other words, we love you. :)"
+        android:id="@+id/textView2"
+        android:layout_gravity="right|bottom"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true" />
+
+    <ImageView
+        android:layout_width="229dp"
+        android:layout_height="127dp"
+        android:id="@+id/imageView3"
+
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_below="@+id/plus_one_button"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="349dp"
+        android:layout_height="91dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/logo"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true" />
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="Share"-->
+        <!--android:id="@+id/textView3"-->
+        <!--android:layout_gravity="center" />-->
+
+</RelativeLayout>

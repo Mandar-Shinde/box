@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Potfix</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_maps">Map</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_wwwact">Mapa</string>
+
+    <string name="expanded">\n\n\n Emergency\n Ambulance from: M.G Road To J.J.Hospital</string>
+    <string name="collapsed"> Emergency.\nCreated at: %s</string>
+    <string name="show_notification">Notification</string>
+    <string name="custom_notification">notification.</string>
+
+
+    <string name="collapsed_image">Symbolises a collapsed note
+    </string>
+    <string name="expanded_image">Symbolises an expanded note
+    </string>
+</resources>

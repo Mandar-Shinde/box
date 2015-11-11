@@ -1,0 +1,184 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.elekso.potfix.fragment.ProfileFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Potholes Reported"
+        android:id="@+id/tv_txtpotholecnt"
+        android:gravity="center"
+        android:textSize="18dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tvcollection"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Potholes Hit"
+        android:id="@+id/textView5"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:layout_below="@+id/tv_potholecount"
+        android:layout_toRightOf="@+id/tv_potfreecount"
+        android:layout_toEndOf="@+id/tv_potfreecount"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Km Without hitting any"
+        android:id="@+id/textView6"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:layout_below="@+id/tv_hitcount"
+        android:layout_toRightOf="@+id/tv_potfreecount"
+        android:layout_toEndOf="@+id/tv_potfreecount"
+        android:layout_marginLeft="10dp" />
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="Average Time"-->
+        <!--android:id="@+id/tv_averagetime"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_below="@+id/tv_potfreecount"-->
+        <!--android:layout_marginTop="34dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:textSize="20dp" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/tv_potholecount"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_alignTop="@+id/tv_txtpotholecnt"
+        android:layout_alignLeft="@+id/tv_hitcount"
+        android:layout_alignStart="@+id/tv_hitcount" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/tv_hitcount"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginLeft="11dp"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignLeft="@+id/tvfragprofilename"
+        android:layout_alignStart="@+id/tvfragprofilename"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/tv_potfreecount"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_below="@+id/tv_hitcount"
+        android:layout_alignLeft="@+id/tv_hitcount"
+        android:layout_alignStart="@+id/tv_hitcount" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auto sync with server"
+        android:id="@+id/cbSync"
+        android:checked="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="email"
+        android:id="@+id/tvfragprofileemail"
+        android:layout_below="@+id/tvfragprofilename"
+        android:layout_alignLeft="@+id/tvfragprofilename"
+        android:layout_alignStart="@+id/tvfragprofilename"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="name"
+        android:id="@+id/tvfragprofilename"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/cbSync"
+        android:layout_alignStart="@+id/cbSync"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Account"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Collection"
+        android:id="@+id/tvcollection"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/tvfragprofileemail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sync now"
+        android:id="@+id/buSync"
+        android:layout_above="@+id/cbSync"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="00:12:42"-->
+        <!--android:id="@+id/tv_timecount"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_below="@+id/tv_averagetime"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="40dp" />-->
+
+</RelativeLayout>

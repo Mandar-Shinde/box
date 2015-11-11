@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<EasyWSDL>
+  <Info>
+    <Version>4.1.9.0</Version>
+    <AccountType>Basic</AccountType>
+    <LibrariesFolder>libs/easywsdl</LibrariesFolder>
+  </Info>
+  <Settings>
+    <Url>http://pf-mandars.rhcloud.com/potfix/potfixservice?wsdl</Url>
+    <ClassPrefix/>
+    <PackageName>com.elekso.potfix.ws</PackageName>
+    <AddDocumentation>false</AddDocumentation>
+    <EnableAdvancedFeatures>false</EnableAdvancedFeatures>
+    <EnableMTOM>false</EnableMTOM>
+    <EncodeIllegalCharacters>true</EncodeIllegalCharacters>
+    <GenerateAsyncOperations>false</GenerateAsyncOperations>
+    <ImplementSerializable>false</ImplementSerializable>
+    <AddAnyCollection>false</AddAnyCollection>
+    <UseJodaTime>false</UseJodaTime>
+  </Settings>
+  <Files>
+    <File>VOKExtendedSoapSerializationEnvelope.java</File>
+    <File>VOKHelper.java</File>
+    <File>VOKMarshalGuid.java</File>
+    <File>VOKpotfixservicePortBinding.java</File>
+  </Files>
+  <Libraries>
+    <File>ksoap2-android-assembly-3.6.0-jar-with-dependencies.jar</File>
+  </Libraries>
+</EasyWSDL>
