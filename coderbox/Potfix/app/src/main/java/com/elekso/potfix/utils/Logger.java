@@ -21,7 +21,7 @@ public class Logger {
 
     private Logger()
     {
-        logFileFolder = new File( "/sdcard/potfix/");
+        logFileFolder = new File( "/sdcard/potfix/logs/");
         logFileFolder.mkdirs();
     }
 

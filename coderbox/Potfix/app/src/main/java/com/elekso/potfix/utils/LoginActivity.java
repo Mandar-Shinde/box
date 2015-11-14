@@ -26,8 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     public static String globaldata_test = "hit";
     public static VOKpotfixservicePortBinding service;
     static int loginstatus = 0;
-     String email;
-     String password;
+    String email;
+    String password;
 
     @InjectView(R.id.input_email)
     EditText _emailText;
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.show();
 
         email = _emailText.getText().toString();
-       password = _passwordText.getText().toString();
+        password = _passwordText.getText().toString();
 
         if (isNetworkConnected() == false) {
             onLoginFailed();
@@ -113,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
                         if (loginstatus == 1)
                             onLoginSuccess();
                         else
@@ -159,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
 
-        Config.getInstance(getBaseContext(), getCacheDir()).setProfile("test",email);
+        Config.getInstance(getBaseContext(), getCacheDir()).setProfile("test", email);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

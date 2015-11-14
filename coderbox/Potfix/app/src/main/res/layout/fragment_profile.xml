@@ -15,7 +15,6 @@
 
         android:layout_marginTop="5dp"
         android:layout_below="@+id/tvcollection"
-        android:layout_alignLeft="@+id/textView5"
         android:layout_alignStart="@+id/textView5" />
 
     <TextView
@@ -27,7 +26,6 @@
         android:gravity="center"
         android:textSize="18dp"
         android:layout_below="@+id/tv_potholecount"
-        android:layout_toRightOf="@+id/tv_potfreecount"
         android:layout_toEndOf="@+id/tv_potfreecount"
         android:layout_marginLeft="10dp" />
 
@@ -39,10 +37,10 @@
         android:id="@+id/textView6"
         android:gravity="center"
         android:textSize="18dp"
-        android:layout_below="@+id/tv_hitcount"
-        android:layout_toRightOf="@+id/tv_potfreecount"
-        android:layout_toEndOf="@+id/tv_potfreecount"
-        android:layout_marginLeft="10dp" />
+        android:layout_alignBottom="@+id/tv_potfreecount"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_marginTop="5dp" />
 
     <!--<TextView-->
         <!--android:layout_width="match_parent"-->
@@ -67,8 +65,8 @@
         android:textStyle="bold"
         android:textSize="20dp"
         android:layout_alignTop="@+id/tv_txtpotholecnt"
-        android:layout_alignLeft="@+id/tv_hitcount"
-        android:layout_alignStart="@+id/tv_hitcount" />
+        android:layout_alignLeft="@+id/tvfragprofileemail"
+        android:layout_alignStart="@+id/tvfragprofileemail" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,11 +77,9 @@
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginLeft="11dp"
-        android:layout_alignTop="@+id/textView5"
-        android:layout_alignLeft="@+id/tvfragprofilename"
-        android:layout_alignStart="@+id/tvfragprofilename"
-        android:layout_marginStart="11dp" />
+        android:layout_below="@+id/tv_potholecount"
+        android:layout_alignLeft="@+id/tv_potholecount"
+        android:layout_alignStart="@+id/tv_potholecount" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -143,7 +139,8 @@
         android:text="Account"
         android:id="@+id/textView3"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -154,7 +151,8 @@
         android:layout_marginTop="26dp"
         android:layout_below="@+id/tvfragprofileemail"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="5dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -162,8 +160,28 @@
         android:text="Sync now"
         android:id="@+id/buSync"
         android:layout_above="@+id/cbSync"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/cbSync"
+        android:layout_alignStart="@+id/cbSync" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="sync status"
+        android:id="@+id/textView7"
+        android:layout_above="@+id/cbSync"
+        android:layout_toRightOf="@+id/buSync"
+        android:layout_toEndOf="@+id/buSync" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Share My Collection"
+        android:id="@+id/textView8"
+        android:layout_above="@+id/buSync"
+        android:layout_alignLeft="@+id/buSync"
+        android:layout_alignStart="@+id/buSync" />
 
 
     <!--<TextView-->

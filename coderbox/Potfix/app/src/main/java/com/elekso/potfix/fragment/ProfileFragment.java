@@ -3,15 +3,35 @@ package com.elekso.potfix.fragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.elekso.potfix.MainActivity;
 import com.elekso.potfix.R;
 import com.elekso.potfix.database.DBDataSource;
 import com.elekso.potfix.utils.Config;
+import com.elekso.potfix.ws.VOKpotfixservicePortBinding;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.Key;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 
 /**
@@ -30,6 +50,17 @@ public class ProfileFragment extends Fragment {
 
     TextView tvname;
     TextView tvemail;
+    Button btnSync;
+
+    List<String> fileList;
+    private static final String OUTPUT_ZIP_FILE = "d:\\MyFile.zip";
+    public static  String SOURCE_FOLDER ;
+    public void setSrcFolderzip(String s)
+    {
+     SOURCE_FOLDER =s;
+    }
+
+    public static VOKpotfixservicePortBinding service;
 
     private TextView tv_hitcount;
     // TODO: Rename and change types of parameters
@@ -89,8 +120,60 @@ public class ProfileFragment extends Fragment {
         tvemail.setText(Config.getInstance().getProfileEmail());
 
 
+        btnSync = (Button) view.findViewById(R.id.buSync);
+        btnSync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fileList = new ArrayList<String>();
+                setSrcFolderzip("/sdcard/potfix/logs");
+                generateFileList(new File(SOURCE_FOLDER));
+                zipIt("/sdcard/potfix/zippot.zip");
+
+                service = new VOKpotfixservicePortBinding();
+
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String encodedBase64 = encodefile("/sdcard/potfix/zippot.zip");
+                            if (encodedBase64.length() > 0)
+                                service.UserUploadWS(encodedBase64);
+                        } catch (Exception e) {
+
+
+                        }
+                    }
+                }).start();
+
+            }
+        });
+
         tv_hitcount.setText(""+ DBDataSource.getInstance().countPotholeDB());
         return view;
+    }
+
+    String encodefile(String fileName)
+    {
+        try {
+            InputStream inputStream = new FileInputStream(fileName);//You can get an inputStream using any IO API
+            byte[] bytes;
+            byte[] buffer = new byte[8192];
+            int bytesRead;
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            try {
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    output.write(buffer, 0, bytesRead);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+              bytes = output.toByteArray();
+            return Base64.encodeToString(bytes, Base64.DEFAULT);
+        }catch(Exception ex)
+            {
+            }
+        return null;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -122,5 +205,86 @@ public class ProfileFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+
+
+
+
+    public void zipIt(String zipFile){
+
+        byte[] buffer = new byte[1024];
+
+        try{
+
+            FileOutputStream fos = new FileOutputStream(zipFile);
+            ZipOutputStream zos = new ZipOutputStream(fos);
+
+            System.out.println("Output to Zip : " + zipFile);
+
+            for(String file : this.fileList){
+
+                System.out.println("File Added : " + file);
+                ZipEntry ze= new ZipEntry(file);
+                zos.putNextEntry(ze);
+
+                FileInputStream in =
+                        new FileInputStream(SOURCE_FOLDER + File.separator + file);
+
+                int len;
+                while ((len = in.read(buffer)) > 0) {
+                    zos.write(buffer, 0, len);
+                }
+
+                in.close();
+            }
+
+            zos.closeEntry();
+            //remember close it
+            zos.close();
+
+            System.out.println("Done");
+
+
+
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    private String generateZipEntry(String file){
+        return file.substring(SOURCE_FOLDER.length()+1, file.length());
+    }
+
+    /**
+     * Traverse a directory and get all files,
+     * and add the file into fileList
+     * @param node file or directory
+     */
+    public void generateFileList(File node){
+
+        //add file only
+        if(node.isFile()){
+            fileList.add(generateZipEntry(node.getAbsoluteFile().toString()));
+        }
+
+        if(node.isDirectory()){
+            String[] subNote = node.list();
+            for(String filename : subNote){
+                generateFileList(new File(node, filename));
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
