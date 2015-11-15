@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,6 +29,9 @@ public class LoginActivity extends AppCompatActivity {
     static int loginstatus = 0;
     String email;
     String password;
+    public static TaskNewAuth ta;
+    public ProgressDialog progressDialog;
+
 
     @InjectView(R.id.input_email)
     EditText _emailText;
@@ -75,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+       progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
@@ -90,36 +94,39 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    if (service.LoginWS(email, password)) {
-                        loginstatus = 1;
-                        Log.d(TAG, "Login OK");
-                    } else {
-                        loginstatus = 2;
-                        Log.d(TAG, "Login FAIL");
-                    }
-                } catch (Exception e) {
-                    Log.d(TAG, "Login FAILERR " + e.getMessage());
+        String[] myTaskParams = {email, password};
+        ta = new TaskNewAuth();
+        ta.execute(myTaskParams);
 
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        if (loginstatus == 1)
-                            onLoginSuccess();
-                        else
-                            onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    if (service.LoginWS(email, password)) {
+//                        loginstatus = 1;
+//                        Log.d(TAG, "Login OK");
+//                    } else {
+//                        loginstatus = 2;
+//                        Log.d(TAG, "Login FAIL");
+//                    }
+//                } catch (Exception e) {
+//                    Log.d(TAG, "Login FAILERR " + e.getMessage());
+//
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//
+//        new android.os.Handler().postDelayed(
+//                new Runnable() {
+//                    public void run() {
+//                        if (loginstatus == 1)
+//                            onLoginSuccess();
+//                        else
+//                            onLoginFailed();
+//                        progressDialog.dismiss();
+//                    }
+//                }, 3000);
 
 
 //        new android.os.Handler().postDelayed(
@@ -191,5 +198,50 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+
+    class TaskNewAuth extends AsyncTask<String, Void, Void> {
+        String data1;
+        String data2;
+        String data3;
+
+        @Override
+        protected Void doInBackground(String... pdata) {
+            data1 = pdata[0];
+            data2 = pdata[1];
+
+
+            try {
+                if (service.LoginWS(data1, data2) ) {
+                    loginstatus = 1;
+                } else {
+                    loginstatus = 2;
+                }
+            } catch (Exception e) {
+
+            }
+            return (null);
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void onProgressUpdate(Void... item) {
+
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+
+            if (loginstatus == 1) {
+                Toast.makeText(getApplicationContext(), "Welcome Back..", Toast.LENGTH_LONG).show();
+                onLoginSuccess();
+
+            } else {
+                onLoginFailed();
+                //onSignupFailed();
+            }
+            progressDialog.dismiss();
+        }
     }
 }

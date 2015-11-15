@@ -113,10 +113,10 @@ public class ProfileFragment extends Fragment {
         String data=" >> "+MainActivity.globaldata_test;
        // tv_hitcount.setText(data);
 
-        tvname = (TextView) view.findViewById(R.id.tvfragprofilename);
+        //tvname = (TextView) view.findViewById(R.id.tvfragprofilename);
         tvemail = (TextView) view.findViewById(R.id.tvfragprofileemail);
 
-        tvname.setText(Config.getInstance().getProfileName());
+        //tvname.setText(Config.getInstance().getProfileName());
         tvemail.setText(Config.getInstance().getProfileEmail());
 
 
